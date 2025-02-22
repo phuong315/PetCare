@@ -1,0 +1,42 @@
+@model IEnumerable<MyWebApp.Models.Service>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Available Services</title>
+    <link rel="stylesheet" href="~/css/styles.css" />
+</head>
+<body>
+    <div class="container">
+        <h1>Available Services for Booking</h1>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Description</th>
+                    <th>Price</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var service in Model)
+                {
+                    <tr>
+                        <td>@service.Name</td>
+                        <td>@service.Description</td>
+                        <td>@service.Price.ToString("C")</td>
+                        <td>
+                            <form asp-action="BookService" asp-controller="Booking" method="post">
+                                <input type="hidden" name="serviceId" value="@service.Id" />
+                                <button type="submit" class="btn btn-primary">Book Now</button>
+                            </form>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

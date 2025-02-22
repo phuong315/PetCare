@@ -1,0 +1,30 @@
+@model YourNamespace.Models.Order
+
+@{
+    ViewData["Title"] = "Checkout";
+}
+
+<h2>Checkout</h2>
+
+<form asp-action="ProcessPayment" method="post">
+    <div>
+        <h3>Order Summary</h3>
+        <p>User: @Model.UserId</p>
+        <p>Order Date: @Model.OrderDate</p>
+        <p>Total Amount: @Model.TotalAmount</p>
+    </div>
+
+    <div>
+        <h3>Payment Information</h3>
+        <label for="cardNumber">Card Number</label>
+        <input type="text" id="cardNumber" name="CardNumber" required />
+
+        <label for="expiryDate">Expiry Date</label>
+        <input type="text" id="expiryDate" name="ExpiryDate" required />
+
+        <label for="cvv">CVV</label>
+        <input type="text" id="cvv" name="CVV" required />
+    </div>
+
+    <button type="submit">Complete Purchase</button>
+</form>
